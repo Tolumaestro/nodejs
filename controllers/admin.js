@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 const getAddProduct = (req, res, next) => {
-  res.render("add-products", {
+  res.render("admin/add-products", {
     pageTitle: "Add Products",
     path: "/admin/add-product",
     activeAddProduct: true,
@@ -18,18 +18,12 @@ const postAddProduct = (req, res, next) => {
 
 const getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render("shop", {
+    res.render("admin/product-list", {
       prods: products,
-      pageTitle: "My Shop",
-      path: "/",
-      activeShop: true,
-      shopCSS: true,
+      pageTitle: "Admin Products",
+      path: "admin/products",
     });
   });
 };
 
-const page404 = (req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Page Not Found", path: null });
-};
-
-module.exports = { getAddProduct, postAddProduct, getProducts, page404 };
+module.exports = { getAddProduct, postAddProduct, getProducts };
