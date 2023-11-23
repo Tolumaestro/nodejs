@@ -27,6 +27,13 @@ const getCart = (req, res, next) => {
   });
 };
 
+const getOrders = (req, res, next) => {
+  res.render("shop/orders", {
+    path: "/orders",
+    pageTitle: "Your Orders",
+  });
+};
+
 const getCheckout = (req, res, next) => {
   res.render("shop/checkout", {
     path: "/checkout",
@@ -38,4 +45,11 @@ const page404 = (req, res, next) => {
   res.status(404).render("404", { pageTitle: "Page Not Found", path: null });
 };
 
-module.exports = { getIndex, getProducts, getCart, getCheckout, page404 };
+module.exports = {
+  getIndex,
+  getProducts,
+  getCart,
+  getOrders,
+  getCheckout,
+  page404,
+};
