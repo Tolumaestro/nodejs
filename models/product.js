@@ -23,6 +23,7 @@ class Product {
   }
 
   save() {
+    this.id = Math.random().toString();
     getProductFromFile((products) => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), (err) => {
@@ -33,6 +34,13 @@ class Product {
 
   static fetchAll(callback) {
     getProductFromFile(callback);
+  }
+
+  static findById(id, callback) {
+    getProductFromFile((products) => {
+      const product = products.find((product) => product.id === id);
+      callback(product);
+    });
   }
 }
 
